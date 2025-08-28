@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Service Directory</title>
+    <style>
+        html, body{ padding: 0; margin: 0; background: #F5FFF6}
+        
+        .navigation{
+            display: flex;
+            justify-content: space-between;
+             margin: 25px 60px;
+        }
+        .logo{
+            display:flex;
+            width: 195px; height:50px;
+            font-size: 1.2em;
+            font-weight: 900;
+            align-items: center;   
+            gap: 0.3em;
+        }
+        .logo, .dashboard{
+             /* border: 1px solid black; */
+        }
+        .logo-img{
+            height: 50px; width: 50px;
+        }
+        .logo-text-img{
+            width:135px; height: 44px;
+        }
+        .dashboard{
+            /* width:400px; */
+            justify-content: flex-end;
+        }
+        .dashboard, .dashboard div{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+        }
+        .dashboard div{
+            font-size: 16px;
+            font-weight: 600;
+            height: 52px;
+            border-radius: 50px;
+        }
+        .dashboard img{
+            width:30px; height: 30px;
+        }
+        #heart_count_div {
+            width: 123px;
+            background: rgba(65, 255, 107, 0.1);
+        }
+        #coin_count_div{
+            width: 106px;
+            background:  rgba(65, 255, 107, 0.1);
+        }
+        #copy_count_div{
+            width: 127px;
+            background: #00A63E;
+            color: white;
+        }
+
+.hero{
+    width: calc(100%-1em);
+    /* height: 240px; */
+    background-image: linear-gradient(to right, #013223, #006747, #013223);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+}
+
+.hero img{
+    width: 90px; height:90px;
+    padding: 0.8em;
+}
+
+.hero #title{
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    padding: 0.2em;
+}
+
+
+.hero #subtitle{
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    padding: 0.2em;
+}
+
+main{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    margin: 60px;
+}
+
+.card{
+    /* width: 436px; */
+    height: 250px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px #aaa;
+    background: white;
+    border-radius: 12px;
+}
+
+        @media screen and (max-width: 600px) {
+            .navigation{
+             margin: 10px 25px;
+            }
+            
+            .logo-text-img{
+                width: 100px;
+                height: 30px;
+            }
+            .logo-img{
+                width: 30px;
+                height: 30px;
+            }
+           
+            .dashboard{
+                 gap: 0.2em;
+            }
+            .dashboard div{
+            gap: 0.5em;
+            font-size: 16px;
+            font-weight: 600;
+            height: 35px;
+            border-radius: 34px;
+            }
+        .dashboard img{
+            width:25px; height: 25px;
+        }
+        #heart_count_div {
+            width: 90px;
+        }
+        #coin_count_div{
+            width: 80px;
+        }
+        #copy_count_div{
+            width: 95px;
+        }
+
+/* 
+.hero{
+    height: 200px;} */
+        
+.hero img{
+    /* width: 90px; height:90px; */
+    padding: 0.4em;
+}
+
+.hero #title{
+    font-size: 30px;
+}
+
+.hero #subtitle{
+  font-size: 15px;
+  text-align: center;
+  font-weight: 400;
+}
+
+        }
+
+    </style>
+</head>
+<body>
+<header>
+<section class="navigation">
+<div class="logo"><img class="logo-img" src='assets/logo.png'/><img class="logo-text-img" src='assets/logo-text.png'/></div>
+<div class="dashboard">
+    <div id="heart_count_div"><span id="heart_count">0</span> <img src='assets/heart.png'/></div>
+    <div id="coin_count_div"><span id="coin_count">100</span> <img src='assets/coin.png'/></div>
+    <div id="copy_count_div"><span id="copy_count">0</span> Copy</div>
+</div>
+</section>
+<section class="hero">
+<img src="assets/logo.png"/>
+<div id="title"></div>
+<div id="subtitle"></div>
+</section>
+</header>
+<main>
+
+</main>
+
+
+<div id="card_template" style="display:none">
+<div class="card"></div>
+</div>
+
+
+<script src="app.js"></script>
+<script>
+const LANG_EN={
+title:"Emergency Service Directory",
+subtitle:"Government Emergency Services at Your Fingertip – A Project by  Government of the People’s Republic of Bangladesh",
+cards:[
+        {  "icon": "emergency.png" ,
+        "title": "National Emergency Number" ,
+        "subtitle": "National Emergency",
+        "number": "999",
+        "type": "All", },
+        {  "icon": "police.png" ,
+        "title": "Police Helpline Number" ,
+        "subtitle": "Police",
+        "number": "999",
+        "type": "Police", },
+        {  "icon": "fire-service.png" ,
+        "title": "Fire Service Number" ,
+        "subtitle": "Fire Service",
+        "number": "999",
+        "type": "Fire", },
+        {  "icon": "ambulance.png" ,
+        "title": "Ambulance Service" ,
+        "subtitle": "Ambulance",
+        "number": "1994-999999",
+        "type": "All", },
+        {  "icon": "emergency.png" ,
+        "title": "Women & Child Helpline" ,
+        "subtitle": "Women & Child Helpline",
+        "number": "109",
+        "type": "Help", },
+        {  "icon": "emergency.png" ,
+        "title": "Anti-Corruption Helpline" ,
+        "subtitle": "Anti-Corruption",
+        "number": "106",
+        "type": "Govt.", },
+        {  "icon": "emergency.png" ,
+        "title": "Electricity Helpline",
+        "subtitle": "Electricity Outage",
+        "number": "16216",
+        "type": "Electricity", },
+        {  "icon": "emergency.png" ,
+        "title": "Brac Helpline" ,
+        "subtitle": "Brac",
+        "number": "16445",
+        "type": "NGO", },
+        {  "icon": "emergency.png" ,
+        "title": "Bangladesh Railway Helpline" ,
+        "subtitle": "Bangladesh Railway",
+        "number": "163",
+        "type": "Travel", },
+    ]
+};
+
+const LANG=LANG_EN;
+
+function setText2Id(id, text){
+    document.getElementById(id).innerText=text;
+}
+
+setText2Id("title", LANG.title);
+setText2Id("subtitle", LANG.subtitle);
+
+let mainTag=document.getElementsByTagName("main")[0];
+let cardTemplate=document.getElementById("card_template").innerHTML;
+for(var i=0;i<LANG.cards.length;i++){
+    let card=LANG.cards[i];
+    mainTag.innerHTML+=cardTemplate; 
+}
+
+
+
+</script>
+</body>
+</html>
