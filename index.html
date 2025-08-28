@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emergency Service Directory</title>
+    <script src="https://kit.fontawesome.com/c1b18cb27f.js" crossorigin="anonymous"></script>
     <style>
         html, body{ padding: 0; margin: 0; background: #F5FFF6}
         
@@ -82,6 +83,7 @@
     font-weight: 500;
     color: white;
     padding: 0.2em;
+     text-align: center;
 }
 
 
@@ -90,22 +92,103 @@
     font-weight: 700;
     color: white;
     padding: 0.2em;
+     text-align: center;
 }
 
 main{
     display:grid;
+    grid-template-columns: 5fr 2fr;
+}
+
+#card_list{
+    display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
     margin: 60px;
+    width: 100%;
 }
 
 .card{
-    /* width: 436px; */
-    height: 250px;
+    /* width: 100%; */
+    /* height: 250px; */
     border: 1px solid #ddd;
     box-shadow: 2px 2px #aaa;
     background: white;
     border-radius: 12px;
+    padding: 1em;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-width: 250px; */
+}
+
+.card_icon{
+    width: 60px; height:60px;
+    background: #FFE3E2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+}
+
+.card_icon:has(img[src$="police.png"]){
+    background: #DFEFFF;
+}
+
+.card_icon img{
+     width: 32px; height:32px;
+}
+
+
+.card-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card_title{
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0.5em 0;
+}
+.card_subtitle{
+    font-size: 18px;
+     margin: 0.5em 0;
+}
+
+.card_number{
+    font-size: 32px;
+    font-weight: bold;
+    /* margin: 0.3em 0 0 0; */
+}
+.card_type{
+    background: #F2F2F2;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 0.2em 0.4em;
+}
+
+.card_action{
+    font-size: 16px;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+}
+
+.copy_btn, .call_btn {
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    margin: 0.1em;
+    padding: 0.15em;
+    border-radius: 10px;
+}
+
+.call_btn{
+  background: #00A63E;
+  color: white;
 }
 
         @media screen and (max-width: 600px) {
@@ -160,7 +243,6 @@ main{
 
 .hero #subtitle{
   font-size: 15px;
-  text-align: center;
   font-weight: 400;
 }
 
@@ -184,13 +266,32 @@ main{
 <div id="subtitle"></div>
 </section>
 </header>
-<main>
 
+<main>
+<section id="card_list"></section>
+<section>Hello</section>
 </main>
 
 
 <div id="card_template" style="display:none">
-<div class="card"></div>
+<div class="card">
+    <div class="card-top">
+        <div class="card_icon"><img src="assets/%icon%"/></div>
+        <div clss="fav_icon"><i class="fa-regular fa-heart"></i> <i class="fa-solid fa-heart"></i></div>
+    </div>
+    <div class="card_title">
+%title%
+    </div>
+    <div class="card_subtitle">
+%subtitle%
+    </div>
+    <div class="card_number">%number%</div>
+    <div><div class="card_type">%type%</div></div>
+    <div class="card_action">
+        <div class="copy_btn">Copy</div>
+        <div class="call_btn">Call</div>
+    </div>
+</div>
 </div>
 
 
@@ -257,11 +358,17 @@ function setText2Id(id, text){
 setText2Id("title", LANG.title);
 setText2Id("subtitle", LANG.subtitle);
 
-let mainTag=document.getElementsByTagName("main")[0];
+let card_list=document.getElementById("card_list");
 let cardTemplate=document.getElementById("card_template").innerHTML;
 for(var i=0;i<LANG.cards.length;i++){
     let card=LANG.cards[i];
-    mainTag.innerHTML+=cardTemplate; 
+    let cardHT=cardTemplate.replace("%icon%", card.icon); 
+    cardHT=cardHT.replace("%title%", card.title);
+    cardHT=cardHT.replace("%subtitle%", card.subtitle);
+    cardHT=cardHT.replace("%number%", card.number);
+    cardHT=cardHT.replace("%type%", card.type);
+    // cardHT=cardHT.replace("%title%", card.title);
+    card_list.innerHTML+=cardHT;
 }
 
 
