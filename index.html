@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emergency Service Directory</title>
     <script src="https://kit.fontawesome.com/c1b18cb27f.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/png" href="assets/logo.png">
     <style>
         html, body{ padding: 0; margin: 0; background: #F5FFF6}
-        
+        .navigation_div{
+             position: fixed;  top: 0; left:0;
+             background: #F5FFF6;
+             width:100%;
+             border-bottom: 1px solid #013223;
+        }
         .navigation{
             display: flex;
             justify-content: space-between;
-             margin: 25px 60px;
+            margin: 25px 60px;
+        }
+        .navigation_after{
+            height: 100px;
         }
         .logo{
             display:flex;
@@ -98,25 +107,33 @@
 main{
     display:grid;
     grid-template-columns: 5fr 2fr;
+    margin: 60px;
+    gap: 2em;
 }
 
 #card_list{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
-    margin: 60px;
     width: 100%;
+}
+
+#call_history{
+    background: white;
+    padding: 3em;
+    border: 1px solid #ddd;
+    box-shadow: 1px 2px #bbb;
+    border-radius: 10px;
 }
 
 .card{
     /* width: 100%; */
     /* height: 250px; */
     border: 1px solid #ddd;
-    box-shadow: 2px 2px #aaa;
+    box-shadow: 1px 2px #bbb;
     background: white;
     border-radius: 12px;
     padding: 1em;
-
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -167,6 +184,8 @@ main{
     border-radius: 10px;
     display: inline-block;
     padding: 0.2em 0.4em;
+    margin: 0.1em 0;
+    font-size: 18px;
 }
 
 .card_action{
@@ -184,6 +203,7 @@ main{
     margin: 0.1em;
     padding: 0.15em;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .call_btn{
@@ -191,10 +211,51 @@ main{
   color: white;
 }
 
+
+button{
+    background-color: #00A63E;
+    font-size: 16px;
+    color:white;
+    padding: 10px 36px;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+}
+
+.call_history_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+.call_history_item{
+    background-color: #f9f9f9;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2em;
+    margin: 0.3em;
+    border-radius: 5px;
+}
+
+
+
+.mobile_show{
+    display:none;
+}
+.web_show{
+    display:block;
+}
         @media screen and (max-width: 600px) {
             .navigation{
              margin: 10px 25px;
             }
+            .navigation_after{
+            height: 70px;
+        }
             
             .logo-text-img{
                 width: 100px;
@@ -246,22 +307,101 @@ main{
   font-weight: 400;
 }
 
+
+
+main{
+    /* display:grid; */
+    grid-template-columns: 8fr 6fr;
+    margin: 20px;
+    gap: 0.8em;
+}
+
+#card_list{
+    display:grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1em;
+    width: 100%;
+}
+
+
+.card_icon{
+    width: 45px; height:45px;
+}
+
+.card_icon img{
+     width: 25px; height:25px;
+}
+
+.card_title{
+    font-size: 20px;
+}
+.card_subtitle{
+    font-size: 16px;
+}
+
+.card_number{
+    font-size: 26px;
+    display:flex;
+    gap: 1em;
+}
+
+.card_type{
+    font-size: 16px;
+}
+
+#call_history{
+    /* position:sticky; */
+    padding: 0.5em;
+}
+
+.call_history_header{
+    font-size: 16px;
+}
+
+button{
+     padding: 7px 20px;
+}
+
+.mobile_show{
+    display:block;
+}
+.web_show{
+    display:none;
+}
+
+#call_history img{
+    width:25px; height:25px;
+}
+
+
+.call_history_item{
+display:block;
+}
+
+
         }
 
+
+        .fa-heart{
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
 <header>
-<section class="navigation">
+<section class="navigation_div">
+<div class="navigation">
 <div class="logo"><img class="logo-img" src='assets/logo.png'/><img class="logo-text-img" src='assets/logo-text.png'/></div>
 <div class="dashboard">
     <div id="heart_count_div"><span id="heart_count">0</span> <img src='assets/heart.png'/></div>
     <div id="coin_count_div"><span id="coin_count">100</span> <img src='assets/coin.png'/></div>
     <div id="copy_count_div"><span id="copy_count">0</span> Copy</div>
 </div>
+</div>
 </section>
+<section class="navigation_after">    </section>
 <section class="hero">
-<img src="assets/logo.png"/>
+<img src="assets/logo-dark.png"/>
 <div id="title"></div>
 <div id="subtitle"></div>
 </section>
@@ -269,7 +409,15 @@ main{
 
 <main>
 <section id="card_list"></section>
-<section>Hello</section>
+<section id="call_history">
+    <div class="call_history_header">
+        <div><b>Call History</b></div>
+        <button><span class="web_show">Clear</span><img class="mobile_show" src='assets/icons8-rubber-48.png'/></button>
+    </div>
+    <div id="call_history_list">
+        
+    </div>
+</section>
 </main>
 
 
@@ -277,7 +425,7 @@ main{
 <div class="card">
     <div class="card-top">
         <div class="card_icon"><img src="assets/%icon%"/></div>
-        <div clss="fav_icon"><i class="fa-regular fa-heart"></i> <i class="fa-solid fa-heart"></i></div>
+        <div><i name="fav_icon" data="%id%" class="fa-regular fa-heart"></i></div>
     </div>
     <div class="card_title">
 %title%
@@ -285,15 +433,20 @@ main{
     <div class="card_subtitle">
 %subtitle%
     </div>
-    <div class="card_number">%number%</div>
-    <div><div class="card_type">%type%</div></div>
+    <div class="card_number">%number% <div><div class="card_type">%type%</div></div></div>
     <div class="card_action">
-        <div class="copy_btn">Copy</div>
-        <div class="call_btn">Call</div>
+        <div class="copy_btn" data="%number%">Copy</div>
+        <div class="call_btn" data="%id%">Call</div>
     </div>
 </div>
 </div>
 
+<div id="history_template" style="display:none">
+        <div class="call_history_item">
+         <div><div>%title%</div><div>%number%</div></div>
+         <div>%time%</div>
+        </div>
+</div>
 
 <script src="app.js"></script>
 <script>
@@ -320,7 +473,7 @@ cards:[
         "title": "Ambulance Service" ,
         "subtitle": "Ambulance",
         "number": "1994-999999",
-        "type": "All", },
+        "type": "Health", },
         {  "icon": "emergency.png" ,
         "title": "Women & Child Helpline" ,
         "subtitle": "Women & Child Helpline",
@@ -351,6 +504,10 @@ cards:[
 
 const LANG=LANG_EN;
 
+let balance=100;
+let favorites=[];
+let copy=0;
+
 function setText2Id(id, text){
     document.getElementById(id).innerText=text;
 }
@@ -358,21 +515,94 @@ function setText2Id(id, text){
 setText2Id("title", LANG.title);
 setText2Id("subtitle", LANG.subtitle);
 
+function updateDashbaord(){
+setText2Id("heart_count", favorites.length);
+setText2Id("coin_count", balance);
+setText2Id("copy_count", copy);
+}
+
+
+function addHistory(id){
+    id=parseInt(id);
+    let temp=historyTemplate.replace("%title%", LANG.cards[id].title);
+    temp=temp.replace("%number%", LANG.cards[id].number);
+    temp=temp.replace("%time%","time");
+    document.getElementById("call_history_list").innerHTML+=temp;
+}
+
+function setOnclicks(){
+let favs=document.getElementsByName("fav_icon");
+let copys=document.getElementsByClassName("copy_btn");
+let calls=document.getElementsByClassName("call_btn");
+
+
+for(let i=0; i<favs.length;i++){
+favs[i].addEventListener("click", function(e) {
+let id=e.target.getAttribute("data");
+if(favorites.includes(id)){
+  favorites=favorites.filter(function(item) { return item !== id; });
+  e.target.classList.remove("fa-solid");
+  e.target.classList.add("fa-regular");
+}else{
+    favorites.push(id);
+  e.target.classList.remove("fa-regular");
+  e.target.classList.add("fa-solid");
+}
+updateDashbaord();
+});
+}
+
+
+for(let i=0; i<copys.length;i++){
+copys[i].addEventListener("click", function(e) {
+  navigator.clipboard.writeText(e.target.getAttribute("data"));
+  copy++;
+  updateDashbaord();
+});
+}
+
+
+
+for(let i=0; i<calls.length;i++){
+calls[i].addEventListener("click", function(e) {
+let id=e.target.getAttribute("data");
+
+if(balance>0){
+    if(confirm("Are you sure to call "+id)){
+     addHistory(id);
+     balance-=20;
+     console.log(balance)
+    }
+}else{
+    alert("Not enough balance to call. Please recharge by reloading this page.😂")
+}
+
+  updateDashbaord();
+});
+}
+
+
+}
+
+let historyTemplate=document.getElementById("history_template").innerHTML;
+
+
 let card_list=document.getElementById("card_list");
 let cardTemplate=document.getElementById("card_template").innerHTML;
 for(var i=0;i<LANG.cards.length;i++){
     let card=LANG.cards[i];
     let cardHT=cardTemplate.replace("%icon%", card.icon); 
-    cardHT=cardHT.replace("%title%", card.title);
-    cardHT=cardHT.replace("%subtitle%", card.subtitle);
-    cardHT=cardHT.replace("%number%", card.number);
-    cardHT=cardHT.replace("%type%", card.type);
+    cardHT=cardHT.replace(/\%title\%/g, card.title);
+    cardHT=cardHT.replace(/\%subtitle\%/g, card.subtitle);
+    cardHT=cardHT.replace(/\%number\%/g, card.number);
+    cardHT=cardHT.replace(/\%type\%/g, card.type);
+    cardHT=cardHT.replace(/\%id\%/g, i.toString());
     // cardHT=cardHT.replace("%title%", card.title);
     card_list.innerHTML+=cardHT;
 }
 
-
-
+setOnclicks();
+updateDashbaord();
 </script>
 </body>
 </html>
