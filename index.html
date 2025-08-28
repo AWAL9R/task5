@@ -245,6 +245,19 @@ button{
 }
 
 
+.history_title{
+font-size: 18px;
+font-weight: 700;
+}
+
+
+.history_number{
+    font-size: 18px;
+}
+
+.history_time{
+    font-size: 18px;
+}
 
 .mobile_show{
     display:none;
@@ -346,6 +359,7 @@ main{
     font-size: 26px;
     display:flex;
     gap: 1em;
+    align-items: center;
 }
 
 .card_type{
@@ -438,7 +452,7 @@ display:block;
     <div class="card_subtitle">
 %subtitle%
     </div>
-    <div class="card_number">%number% <div><div class="card_type">%type%</div></div></div>
+    <div class="card_number">%number%<div><div class="card_type">%type%</div></div></div>
     <div class="card_action">
         <div class="copy_btn" data="%number%">Copy</div>
         <div class="call_btn" data="%id%">Call</div>
@@ -448,8 +462,8 @@ display:block;
 
 <div id="history_template" style="display:none">
         <div class="call_history_item">
-         <div><div>%title%</div><div>%number%</div></div>
-         <div>%time%</div>
+         <div><div class="history_title">%title%</div><div class="history_number">%number%</div></div>
+         <div class="history_time">%time%</div>
         </div>
 </div>
 
@@ -529,9 +543,15 @@ setText2Id("copy_count", copy);
 
 function addHistory(id){
     id=parseInt(id);
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true});
     let temp=historyTemplate.replace("%title%", LANG.cards[id].title);
     temp=temp.replace("%number%", LANG.cards[id].number);
-    temp=temp.replace("%time%",  new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" }));
+    temp=temp.replace("%time%",  timeString);
     document.getElementById("call_history_list").innerHTML+=temp;
 }
 function clearHistory(){
