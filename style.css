@@ -1,3 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+      *{   font-family: "Roboto", sans-serif; }
+
+
       html, body{ padding: 0; margin: 0; background: #F5FFF6}
 
         .navigation_div{
@@ -334,7 +343,7 @@ button{
 }
 
 main{
-     margin: 15px;
+     padding: 25px;
 }
 
 main>div{

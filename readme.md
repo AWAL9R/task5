@@ -11,4 +11,4 @@
 - Adding event to the parent and using for all child is called event delegation. Its useful when there is so many child and you have to attach event listeners to all. because you dont need to attach a tons of event listensers to all children. You just attach to its parent than you can check weather target element is sending that event or not.
 ## 5. What is the difference between **preventDefault() and stopPropagation()** methods?
 - preventDefault() prevents form data from posting.
-- stopPropagation() stops event from reching its parent elements event listeners.
+- stopPropagation() stops event from reching its parent element's event listeners.
